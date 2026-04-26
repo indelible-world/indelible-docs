@@ -48,15 +48,16 @@ nav = [
   
     {"Home" = [
         {"Home" = "index.md"},
-        "about.md",
         "gettingstarted.md",
         "thestandard.md",
         {"Contracts" = [
-            "contracts/ens.md",
-            "contracts/taanq.md"
+            "contracts/taanq.md",
+            "contracts/ens.md"
+            
         ]},
         "html.md"
     ]},
+    {"About" = "about.md"},
     {"Guides" = [
         "guides/index.md"
     ]},

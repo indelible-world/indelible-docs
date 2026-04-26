@@ -50,12 +50,18 @@ nav = [
         {"Home" = "index.md"},
         "gettingstarted.md",
         "thestandard.md",
-        {"Contracts" = [
-            "contracts/taanq.md",
-            "contracts/ens.md"
+        "html.md",
+        {"TAANQ" = [
+            "taanq/index.md",
+            "taanq/attestations.md",
+            "taanq/delegations.md",
+            "taanq/commit-reveal.md"
+            
             
         ]},
-        "html.md"
+        {"Integrations" = [
+          "integrations/ens.md"
+        ]}
     ]},
     {"About" = "about.md"},
     {"Guides" = [

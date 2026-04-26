@@ -1,5 +1,5 @@
 ---
-title: ENS Integration
+title: ENS
 icon: simple/ens
 ---
 

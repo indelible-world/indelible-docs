@@ -35,10 +35,7 @@ function registerEnsBinding(bytes calldata dnsName) external
 |-----------|------|-------------|
 | `dnsName` | `bytes` | DNS-encoded ENS name (e.g., the wire-format encoding of `alice.eth`) |
 
-!!! tip "Updating Your Binding"
-    To revoke a binding, update the ENS name's `indelible-address` record to a different address or remove it entirely, and then call `registerEnsBinding` again with the same name. The contract will detect the change and mark the previous binding as revoked.
-
-!!! note "Check Your records"
+!!! note
     The `indelible-address` text record on the ENS name must be set to your address before calling this function, or the transaction will revert with `"Record invalid"`.
 
 ## Removing a Binding
@@ -54,12 +51,6 @@ function removeEnsBinding(bytes32 node) external
 | `node` | `bytes32` | The namehash of the ENS name whose binding should be removed |
 
 The function reverts if the binding does not exist, if the ENS record still matches the registered authority (binding is still valid), or if the binding has already been revoked.
-
-!!! info "Permanence"
-    Removing a binding does not delete the verification record from the blockchain. Instead, it sets the `endTimestamp` to indicate that the binding is no longer active. This allows anyone to query the full history of ENS bindings for an address, including when they were created and revoked. Verification records search for valid bindings by checking for records that were active at the time of attestation.
-
-??? note "Auto-Revocation"
-    Indelible's backend periodically checks all active ENS bindings to ensure they remain valid. If it detects that an ENS name's `indelible-address` record has changed or been removed, it automatically calls `removeEnsBinding` to revoke the corresponding binding on-chain. This ensures that the on-chain records accurately reflect the current state of ENS ownership. Anyone can run this script independently to verify the integrity of ENS bindings. See [the Indelible Recordwatcher](https://github.com/indelible-world/indelible-ens-recordwatcher) for details.
 
 ## Verification Records
 

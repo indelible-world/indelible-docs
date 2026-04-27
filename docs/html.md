@@ -23,6 +23,9 @@ By marking specific elements (e.g., `<p>`, `<h1>`, `<blockquote>`, etc.) with th
 ### Exclusive Marking
 By marking a parent element (e.g., `<article>`, `<main>`, or `<body>`) with the **`data-indelible`** attribute without manually specifying any `data-indelible-include` tags, you indicate that all content within that element is part of the attestation. This is the most common approach and is ideal for articles where the entire content is being attested. To exclude specific elements from the attestation, you can use the **`data-indelible-exclude`** attribute on those elements.
 
+!!! note
+    Content from across different elements will be combined into a single string with only a single space separating them, and the resulting string will be attested as a whole.
+
 ---
 
 ## Embedding Quotes

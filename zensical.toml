@@ -55,9 +55,8 @@ nav = [
             "taanq/index.md",
             "taanq/attestations.md",
             "taanq/delegations.md",
-            "taanq/commit-reveal.md"
-            
-            
+            "taanq/commit-reveal.md",
+            "taanq/quote-verification.md"
         ]},
         {"Integrations" = [
           "integrations/ens.md"

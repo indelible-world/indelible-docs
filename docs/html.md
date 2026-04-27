@@ -28,7 +28,8 @@ By marking a parent element (e.g., `<article>`, `<main>`, or `<body>`) with the 
 ## Embedding Quotes
 
 When your article quotes another attested work, you can embed the full cryptographic proof of that quote directly in the HTML using the **`data-indelible-quote`** attribute. Its value is the complete [quote proof JSON](taanq/quote-verification.md#the-proof-file) for the quoted passage — allowing any reader or tool to verify the quote on-chain without needing a separate file.
-
+!!! note
+    Verifiers will check that the text within the html element is contained at all, across chunk boundaries, in the quoted text in the proof file. Don't worry about keeping all of the text in a proof chunk visible to the user.
 ### The `data-indelible-quote` Attribute
 
 Add `data-indelible-quote` to any element that contains a quote (typically a `<blockquote>`, `<q>`, or `<p>`). Its value is a JSON object with the following fields:

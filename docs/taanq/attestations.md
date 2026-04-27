@@ -111,7 +111,7 @@ An attestation can be revoked by its authority address or a current [delegate](d
 
 After the 7-day window closes, an attestation becomes permanent and cannot be revoked.
 
-!!! warning
+!!! warning "Revocation is Final"
     Revoking an attestation does not delete it from the blockchain. The attestation record remains publicly accessible, but its `revokedAt` timestamp indicates that it has been revoked. This design ensures transparency while allowing authors to disavow attestations signed by insecure keys within a reasonable timeframe. **A revoked attestation can not be re-attested by the same authority.** If an author wants to re-attest the same content after revocation, they must create a new attestation with a different IPFS CID (e.g., by making a minor edit to the content).
 
 

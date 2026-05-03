@@ -49,6 +49,11 @@ nav = [
     {"Home" = [
         {"Home" = "index.md"},
         "gettingstarted.md",
+        {"Indelible Library" = [
+            "library/index.md"
+        ]}
+    ]},
+    {"Indelible Standard" = [
         "thestandard.md",
         "html.md",
         {"TAANQ" = [

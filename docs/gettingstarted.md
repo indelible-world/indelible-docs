@@ -3,7 +3,7 @@ title: Getting Started
 icon: lucide/play
 ---
 
-# Getting Started with the Indelible Protocol
+# Getting Started with the Indelible Standard
 
 ## Introduction
 

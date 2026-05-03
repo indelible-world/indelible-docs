@@ -21,7 +21,7 @@ indelible.world solves this by anchoring authorship to a public blockchain, a le
 
 | Section | Description |
 |---|---|
-| [The Standard](thestandard.md) | Best practices for publishing and verifying content using the Indelible protocol. |
+| [The Standard](thestandard.md) | Best practices for publishing and verifying content using the Indelible Standard. |
 | [TAANQ](taanq/index.md) | The smart contract protocol that powers on-chain authorship attestations. |
 | [Getting Started](gettingstarted.md) | How to start using indelible.world. |
 | [Integrations](integrations/ens.md) | Connecting indelible.world with other protocols such as ENS. |

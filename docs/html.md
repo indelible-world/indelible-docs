@@ -35,7 +35,7 @@ When your article quotes another attested work, you can embed the full cryptogra
     Verifiers will check that the text within the html element is contained at all, across chunk boundaries, in the quoted text in the proof file. Don't worry about keeping all of the text in a proof chunk visible to the user.
 ### The `data-indelible-quote` Attribute
 
-Add `data-indelible-quote` to any element that contains a quote (typically a `<blockquote>`, `<q>`, or `<p>`). Its value is a JSON object with the following fields:
+Add `data-indelible-quote` to any element that contains a quote (typically a `<blockquote>`, `<span>`, `<q>`, or `<p>`). Its value is a JSON object with the following fields:
 
 | Field | Type | Description |
 |---|---|---|

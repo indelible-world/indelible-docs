@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: 3.x
       - name: Install dependencies
@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: zensical build --clean
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: lts/*
       - name: Deploy to Cloudflare Pages
@@ -33,4 +33,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          preCommands: wrangler pages project create indelible-static --production-branch=main || true
           command: pages deploy site --project-name=indelible-docs

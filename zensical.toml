@@ -48,32 +48,33 @@ nav = [
   
     {"Home" = [
         {"Home" = "index.md"},
-        "gettingstarted.md",
-        {"Indelible Library" = [
-            "library/index.md"
-        ]}
+        "gettingstarted.md"
     ]},
     {"Indelible Standard" = [
-        "thestandard.md",
-        "html.md",
+        {"The Standard" = "standard/index.md"},
+        "standard/html.md",
         {"TAANQ" = [
-            "taanq/index.md",
-            "taanq/attestations.md",
-            "taanq/delegations.md",
-            "taanq/commit-reveal.md",
-            "taanq/quote-verification.md"
+            "standard/taanq/index.md",
+            "standard/taanq/attestations.md",
+            "standard/taanq/delegations.md",
+            "standard/taanq/commit-reveal.md",
+            "standard/taanq/quote-verification.md"
         ]},
         {"Integrations" = [
-          "integrations/ens.md"
+          "standard/integrations/ens.md"
+        ]},
+        {"Standard Library" = [
+            "standard/library/index.md",
+            "standard/library/verify.md",
+            "standard/library/publish.md",
+            "standard/library/utils.md",
+            "standard/library/chains.md"
         ]}
     ]},
     {"About" = "about.md"},
     {"Guides" = [
         "guides/index.md"
-    ]},
-    #{"API" = [
-    #    "api/index.md"
-    #]}
+    ]}
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize

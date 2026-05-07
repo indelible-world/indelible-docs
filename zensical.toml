@@ -67,6 +67,7 @@ nav = [
             "standard/library/index.md",
             "standard/library/verify.md",
             "standard/library/publish.md",
+            "standard/library/ens.md",
             "standard/library/utils.md",
             "standard/library/chains.md"
         ]}

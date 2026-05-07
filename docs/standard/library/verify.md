@@ -64,7 +64,7 @@ const { verification, quoteText, allProofsValid } = await verifyQuoteProof(publi
 | Parameter | Type | Description |
 |---|---|---|
 | `publicClient` | `PublicClient` | A viem public client. |
-| `proofData` | `object` | A parsed [quote proof JSON](../standard/taanq/quote-verification.md#the-proof-file) object. |
+| `proofData` | `object` | A parsed [quote proof JSON](../taanq/quote-verification.md#the-proof-file) object. |
 
 **Returns:** `Promise<{ verification: VerificationResult, quoteText: string, allProofsValid: boolean }>`
 
@@ -158,7 +158,7 @@ attestation.revokedAt       // bigint — block.timestamp of revocation; 0n if n
 | Property | Type | Description |
 |---|---|---|
 | `ipfsHash` | `string` | `bytes32` hex representation of the content's IPFS CID. |
-| `qvHash` | `string` | Merkle root used for [quote verification](../standard/taanq/quote-verification.md). Zero (`0x000...`) if not used. |
+| `qvHash` | `string` | Merkle root used for [quote verification](../taanq/quote-verification.md). Zero (`0x000...`) if not used. |
 | `parentIpfsHash` | `string` | CID of a prior version when this attestation represents an edit. Zero if not an edit. |
 | `authority` | `string` | The Ethereum address credited with authorship. |
 | `timestamp` | `bigint` | Unix timestamp (seconds) of the block in which the attestation was created. |

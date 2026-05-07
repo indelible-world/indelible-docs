@@ -298,7 +298,7 @@ const qvHash = tree.root; // bytes32 hex — store in the attestation
 
 **Returns:** `StandardMerkleTree` (from `@openzeppelin/merkle-tree`)
 
-Each leaf is a `['string', 'string']` tuple of `[index, chunkText]`. This matches the format expected by `verifyQuoteProof` and the [quote verification](../standard/taanq/quote-verification.md) protocol.
+Each leaf is a `['string', 'string']` tuple of `[index, chunkText]`. This matches the format expected by `verifyQuoteProof` and the [quote verification](../taanq/quote-verification.md) protocol.
 
 ---
 

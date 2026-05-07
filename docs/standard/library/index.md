@@ -55,6 +55,7 @@ The package is split into focused entry points so you can import only what you n
 |---|---|
 | `indelible/verify` | Read-only functions: CID verification, attestation lookups, quote proof verification |
 | `indelible/publish` | Write functions: commit/reveal, revocation, delegation, ENS binding, quote proofs |
+| `indelible/ens` | Read-only ENS functions: binding lookups by address, name, or node |
 | `indelible/utils` | Cryptographic utilities: hashing, CID encoding, Merkle tree building |
 | `indelible/constants` | Contract addresses, protocol constants, result codes |
 | `indelible/chains` | Chain registry, RPC URLs, and viem client construction |
@@ -110,4 +111,4 @@ const { verification, quoteText, allProofsValid } = await verifyQuoteProof(publi
 
 ---
 
-See the [Verify](verify.md), [Publish](publish.md), [Utilities & Constants](utils.md), and [Chains](chains.md) pages for full API reference.
+See the [Verify](verify.md), [Publish](publish.md), [ENS](ens.md), [Utilities & Constants](utils.md), and [Chains](chains.md) pages for full API reference.

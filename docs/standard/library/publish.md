@@ -19,7 +19,7 @@ All write functions require both a `walletClient` (for signing and sending trans
 
 ### `commitAttestation`
 
-Submits the first step of the [commit/reveal](../standard/taanq/commit-reveal.md) flow. Computes a salted hash of the content and sends a `commit()` transaction to the contract.
+Submits the first step of the [commit/reveal](../taanq/commit-reveal.md) flow. Computes a salted hash of the content and sends a `commit()` transaction to the contract.
 
 ```js
 const { pendingCommit } = await commitAttestation({
@@ -38,7 +38,7 @@ const { pendingCommit } = await commitAttestation({
 | `publicClient` | `PublicClient` | A viem public client. |
 | `content` | `string` | The raw text content to attest. The library computes the IPFS CID and `qvHash` from this string. |
 | `account` | `Account` | The viem account that will sign the transaction. |
-| `authority` | `string` _(optional)_ | The authority address to credit. Defaults to `account.address`. Set this when using a [delegate](../standard/taanq/delegations.md) wallet. |
+| `authority` | `string` _(optional)_ | The authority address to credit. Defaults to `account.address`. Set this when using a [delegate](../taanq/delegations.md) wallet. |
 | `parentIpfsHash` | `string` _(optional)_ | The IPFS CID of a prior version if this attestation is an edit. |
 
 **Returns:** `Promise<{ pendingCommit: PendingCommit }>`
@@ -74,7 +74,7 @@ const { attestationIndex } = await revealAttestation({
 
 **Returns:** `Promise<{ attestationIndex: bigint }>`
 
-The returned `attestationIndex` is the permanent on-chain index of the new attestation. Store it alongside the IPFS CID and authority address to form a complete [attestation reference](../standard/index.md#attestations).
+The returned `attestationIndex` is the permanent on-chain index of the new attestation. Store it alongside the IPFS CID and authority address to form a complete [attestation reference](../index.md#attestations).
 
 ---
 
@@ -144,7 +144,7 @@ await delegate({
 
 **Returns:** `Promise<void>`
 
-Calling this when a delegation already exists overwrites the previous delegate immediately. See [Delegations](../standard/taanq/delegations.md) for the full model.
+Calling this when a delegation already exists overwrites the previous delegate immediately. See [Delegations](../taanq/delegations.md) for the full model.
 
 ---
 
@@ -191,7 +191,7 @@ A `delegateAddress` of `0x0000000000000000000000000000000000000000` (the zero ad
 
 ### `proveQuote`
 
-Generates a [quote proof JSON](../standard/taanq/quote-verification.md#the-proof-file) for a passage of text quoted from an attested article. The proof can be embedded in HTML or distributed as a standalone file.
+Generates a [quote proof JSON](../taanq/quote-verification.md#the-proof-file) for a passage of text quoted from an attested article. The proof can be embedded in HTML or distributed as a standalone file.
 
 ```js
 const { proofJson, onChain } = await proveQuote({
@@ -258,7 +258,7 @@ await registerEnsBinding({
 
 **Returns:** `Promise<void>`
 
-See [ENS Integration](../standard/integrations/ens.md) for the full integration model.
+See [ENS Integration](../integrations/ens.md) for the full integration model.
 
 ---
 

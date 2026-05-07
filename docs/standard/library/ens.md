@@ -77,17 +77,26 @@ const bindings = await getBindingsByAddress(publicClient, address, opts?);
 | `publicClient` | `PublicClient` | A viem public client connected to the correct chain. |
 | `address` | `` `0x${string}` `` | The Ethereum address to look up. |
 | `opts.ensIndelibleAddress` | `` `0x${string}` `` _(optional)_ | Override the default `ENS_INDELIBLE_ADDRESS` contract address. |
+| `opts.timestamp` | `number` _(optional)_ | Unix timestamp (seconds). When provided, only bindings active at that point in time are returned. |
 
 **Returns:** `Promise<EnsVerification[]>`
 
-The returned array may contain both active and revoked bindings. Filter by `binding.isActive` to get only current bindings.
+When `opts.timestamp` is omitted, all bindings (active and revoked) are returned. Filter by `binding.isActive` to get only currently active bindings.
 
 ```js
 import { getBindingsByAddress } from 'indelible/ens';
 
+// All bindings (active and revoked)
 const bindings = await getBindingsByAddress(publicClient, '0xabc...');
 const active = bindings.filter(b => b.isActive);
 console.log(active.map(b => b.name));
+// ['alice.eth']
+
+// Only bindings active at a specific point in time
+const historical = await getBindingsByAddress(publicClient, '0xabc...', {
+    timestamp: 1714000000,
+});
+console.log(historical.map(b => b.name));
 // ['alice.eth']
 ```
 

@@ -356,3 +356,41 @@ downloadJson(proofJson, 'quote-proof.json');
 | `filename` | `string` | The suggested download filename. |
 
 Also exported from `indelible/publish` for convenience.
+
+---
+
+#### `extractPageData(doc?)`
+
+Reads Indelible attestation data from a marked HTML document. **Browser only** (defaults to the global `document`).
+
+```js
+const page = extractPageData();
+
+if (!page) {
+    // No [data-indelible] root element found
+}
+
+const { attestation, text, quotes } = page;
+```
+
+Pass an alternative `Document` object to parse a fetched or sandboxed document:
+
+```js
+const page = extractPageData(iframe.contentDocument);
+```
+
+| Parameter | Type | Description |
+|---|---|---|
+| `doc` | `Document` | The document to inspect. Defaults to the global `document`. |
+
+**Returns:** `{ attestation, text, quotes } | null`
+
+Returns `null` when no `[data-indelible]` root element is present.
+
+| Property | Type | Description |
+|---|---|---|
+| `attestation` | `object \| null` | Parsed JSON from the `data-indelible` attribute, or `null` if absent or malformed. |
+| `text` | `string` | The normalised attested text extracted from the document. Uses **inclusive mode** (only `[data-indelible-include]` elements) when any such elements exist, otherwise **exclusive mode** (all text inside the root except `[data-indelible-exclude]` subtrees). |
+| `quotes` | `Array<{ text: string, proofData: object }>` | Embedded quote proofs found in `[data-indelible-quote]` attributes. `text` is the normalised text content of the element; `proofData` is the parsed proof object. Elements with malformed JSON are silently skipped. |
+
+Pass the returned `text` to `buildTree` to reconstruct the Merkle tree, or feed `attestation` and `quotes` directly to the verification helpers.

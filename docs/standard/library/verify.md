@@ -153,6 +153,7 @@ attestation.parentIpfsHash  // string — bytes32 hex of prior version CID (zero
 attestation.authority       // string — Ethereum address of the attesting authority
 attestation.timestamp       // bigint — block.timestamp when the attestation was created
 attestation.revokedAt       // bigint — block.timestamp of revocation; 0n if not revoked
+attestation.childIpfsHash   // string — bytes32 hex of the newer version CID (zero if none)
 ```
 
 | Property | Type | Description |
@@ -163,3 +164,4 @@ attestation.revokedAt       // bigint — block.timestamp of revocation; 0n if n
 | `authority` | `string` | The Ethereum address credited with authorship. |
 | `timestamp` | `bigint` | Unix timestamp (seconds) of the block in which the attestation was created. |
 | `revokedAt` | `bigint` | Unix timestamp of revocation, or `0n` if the attestation is still active. |
+| `childIpfsHash` | `string` | `bytes32` hex CID of a newer version of the content, set by the publisher via [`setChildIpfsHash`](publish.md#setchildipfshash). Zero (`0x000...`) if no newer version has been signaled. |

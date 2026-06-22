@@ -20,6 +20,7 @@ struct Attestation {
     address authority;       // Address that made the attestation
     uint256 timestamp;       // Block timestamp when the attestation was created
     uint256 revokedAt;       // Block timestamp of revocation; 0 if not revoked
+    bytes32 childIpfsHash;   // Optional: CID of a newer version set by the publisher
 }
 ```
 
@@ -35,6 +36,7 @@ Attestations are stored in a public array on the contract. The array is pre-init
 | `authority` | `address` | The Ethereum address that authoritatively attested to the content. This may differ from `msg.sender` when a [delegation](delegations.md) is active. |
 | `timestamp` | `uint256` | The `block.timestamp` at the time the attestation was created. |
 | `revokedAt` | `uint256` | The `block.timestamp` when the attestation was revoked. A value of `0` means the attestation is still active. |
+| `childIpfsHash` | `bytes32` | The IPFS CID of a newer version of the content, set by the publisher after the attestation was created. `bytes32(0)` if no newer version has been signaled. |
 
 ---
 
@@ -114,6 +116,20 @@ After the 7-day window closes, an attestation becomes permanent and cannot be re
 !!! warning "Revocation is Final"
     Revoking an attestation does not delete it from the blockchain. The attestation record remains publicly accessible, but its `revokedAt` timestamp indicates that it has been revoked. This design ensures transparency while allowing authors to disavow attestations signed by insecure keys within a reasonable timeframe. **A revoked attestation can not be re-attested by the same authority.** If an author wants to re-attest the same content after revocation, they must create a new attestation with a different IPFS CID (e.g., by making a minor edit to the content).
 
+
+---
+
+## Updating the Child Version
+
+```solidity
+function setChildIpfsHash(uint256 attestationId, bytes32 childIpfsHash) external
+```
+
+A publisher can call `setChildIpfsHash` to signal that a newer version of an attested article exists. The `childIpfsHash` is the IPFS CID of the updated content.
+
+**Constraints:**
+
+- The caller must be the attestation's authority address or an active [delegate](delegations.md) of that authority.
 
 ---
 

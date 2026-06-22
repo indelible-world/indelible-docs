@@ -102,6 +102,32 @@ await revokeAttestation({
 
 ---
 
+### `setChildIpfsHash`
+
+Signals that a newer version of an attested article exists by setting `childIpfsHash` on an existing attestation. Only callable by the attestation's authority or an active delegate.
+
+```js
+await setChildIpfsHash({
+    walletClient,
+    publicClient,
+    attestationId,
+    childIpfsHash,
+    account,
+});
+```
+
+| Parameter | Type | Description |
+|---|---|---|
+| `walletClient` | `WalletClient` | A viem wallet client with a connected account. |
+| `publicClient` | `PublicClient` | A viem public client. |
+| `attestationId` | `number \| bigint` | The on-chain index of the attestation to update. |
+| `childIpfsHash` | `string` | The `bytes32` hex IPFS hash of the new version (use [`decodeCidToIpfsHash`](utils.md#decodecidtoipfshash) to convert from a CID string). |
+| `account` | `Account` | The authority or delegate account. |
+
+**Returns:** `Promise<{ txHash: string }>`
+
+---
+
 ### `getExistingAttestationIndex`
 
 Checks whether an attestation already exists for a given IPFS hash and authority. Returns the attestation index, or `0n` if none exists. Useful before committing to avoid a duplicate.

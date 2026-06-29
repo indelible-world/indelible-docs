@@ -9,7 +9,7 @@ Use the Indelible HTMLData Standard to embed structured quote and article author
 
 At the top level of your article, whether it be an `<article>`, `<main>`, or even `<body>` tag, you must include the **`data-indelible="{}"`**[^1] attribute to indicate that the content within is part of an attestation.
 
-[^1]: The `data-indelible` attribute must contain a JSON object as specified in [the Indelible Standard](thestandard.md#attestations).
+[^1]: The `data-indelible` attribute must contain a JSON object as specified in [the Indelible Standard](index.md#attestations).
 
 ## To include or not to include
 

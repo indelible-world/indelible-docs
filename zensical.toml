@@ -48,7 +48,8 @@ nav = [
   
     {"Home" = [
         {"Home" = "index.md"},
-        "gettingstarted.md"
+        "gettingstarted.md",
+        "tryit.md"
     ]},
     {"Indelible Standard" = [
         {"The Standard" = "standard/index.md"},
@@ -72,6 +73,7 @@ nav = [
             "standard/library/chains.md"
         ]}
     ]},
+    {"Try it Out" = "tryit.md"},
     {"About" = "about.md"},
     {"Guides" = [
         "guides/index.md"

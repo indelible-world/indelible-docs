@@ -165,6 +165,8 @@ import {
     getCIDFromRawDigest,
     decodeCidToIpfsHash,
     buildTree,
+    hasQuoteGaps,
+    splitQuoteSegments,
     dnsEncodeName,
     prettifyTimestamp,
     downloadJson,
@@ -299,6 +301,47 @@ const qvHash = tree.root; // bytes32 hex — store in the attestation
 **Returns:** `StandardMerkleTree` (from `@openzeppelin/merkle-tree`)
 
 Each leaf is a `['string', 'string']` tuple of `[index, chunkText]`. This matches the format expected by `verifyQuoteProof` and the [quote verification](../taanq/quote-verification.md) protocol.
+
+---
+
+### Segmented quotes
+
+#### `hasQuoteGaps(quote)`
+
+Checks whether a quote contains an ellipsis (`...`, `…`) or bracketed text (`[sic]`), either of which indicates a segmented (non-contiguous) quote.
+
+```js
+hasQuoteGaps('The revolution ... televised.'); // true
+hasQuoteGaps('The revolution will not be televised.'); // false
+```
+
+| Parameter | Type | Description |
+|---|---|---|
+| `quote` | `string` | The quote text to check. |
+
+**Returns:** `boolean`
+
+---
+
+#### `splitQuoteSegments(quote)`
+
+Splits a quote on its ellipsis/bracket gap markers into the literal segments that must be located in the source text. Segments are trimmed; empty segments are dropped.
+
+```js
+splitQuoteSegments('The revolution ... televised.');
+// ['The revolution', 'televised.']
+
+splitQuoteSegments('The revolution [will not be] televised.');
+// ['The revolution', 'televised.']
+```
+
+| Parameter | Type | Description |
+|---|---|---|
+| `quote` | `string` | The quote text to split. |
+
+**Returns:** `string[]`
+
+Used internally by [`proveQuote`](publish.md#segmented-quotes) and [`quoteMatchesProvenText`](verify.md#quotematchesproventext) to support ellipses and bracketed insertions in quotes.
 
 ---
 

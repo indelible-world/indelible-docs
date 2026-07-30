@@ -104,3 +104,16 @@ If every proof passes, the exact reconstructed text is confirmed to have been co
 ## No Quotes
 
 If the document contains no verifiable quotes, pass `bytes32(0)` as `qvHash` in the `reveal()` call. A zero `qvHash` is valid and simply indicates that no quote commitment was made.
+
+---
+
+## Segmented Quotes (Ellipses & Brackets)
+
+A quote is often displayed with an ellipsis (`...`, `…`) or a bracketed editorial insertion (e.g. `[sic]`) where part of the original text has been omitted or altered for readability. The proof file format doesn't change to support this — it still only ever contains proofs for literal chunks of the source article. Instead:
+
+- The **prover** (`proveQuote`) locates each literal segment on either side of a gap marker in order within the article, and includes proofs for the chunks covering every segment.
+- The **verifier** (`verifyQuoteProof` / `quoteMatchesProvenText`) can optionally check a displayed quote (including its `...`/`[...]` markers) against the reconstructed proven text, in one of two modes:
+    - **Hard** (default) — the quote must appear verbatim as a contiguous substring of the proven text. No breaking changes to prior behavior.
+    - **Soft** — the quote's literal segments (split on ellipsis/bracket markers) must each appear in the proven text, in the same order. Text inside brackets is discarded and not checked at all.
+
+This keeps the on-chain and proof-file format identical for contiguous and segmented quotes alike — segmentation is purely a client-side convenience for handling how quotes are conventionally displayed.

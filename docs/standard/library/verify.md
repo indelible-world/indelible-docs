@@ -8,7 +8,7 @@ icon: lucide/shield-check
 Read-only functions for fetching and verifying attestations and quote proofs. None of these functions submit transactions.
 
 ```js
-import { verifyCid, verifyQuoteProof, getAttestationByIndex } from 'indelible/verify';
+import { verifyCid, verifyQuoteProof, quoteMatchesProvenText, getAttestationByIndex } from 'indelible/verify';
 ```
 
 ---
@@ -65,14 +65,17 @@ const { verification, quoteText, allProofsValid } = await verifyQuoteProof(publi
 |---|---|---|
 | `publicClient` | `PublicClient` | A viem public client. |
 | `proofData` | `object` | A parsed [quote proof JSON](../taanq/quote-verification.md#the-proof-file) object. |
+| `opts.quote` | `string` _(optional)_ | The quote as displayed to the user. When provided, the result includes `quoteMatches`, indicating whether this quote is covered by the proven text. |
+| `opts.mode` | `'hard' \| 'soft'` _(optional)_ | Controls how `opts.quote` is matched against the proven text. Defaults to `'hard'`. See [`quoteMatchesProvenText`](#quotematchesproventext). |
 
-**Returns:** `Promise<{ verification: VerificationResult, quoteText: string, allProofsValid: boolean }>`
+**Returns:** `Promise<{ verification: VerificationResult, quoteText: string, allProofsValid: boolean, quoteMatches?: boolean }>`
 
 | Return field | Type | Description |
 |---|---|---|
 | `verification` | `VerificationResult` | The result of verifying the attestation referenced in the proof. |
 | `quoteText` | `string` | The full quote text reconstructed by joining the ordered proof chunks. |
 | `allProofsValid` | `boolean` | `true` if every Merkle proof in the file validates against the on-chain `qvHash`. |
+| `quoteMatches` | `boolean` _(only present if `opts.quote` was given)_ | Whether the displayed quote is covered by `quoteText`, per `opts.mode`. |
 
 ```js
 import { verifyQuoteProof } from 'indelible/verify';
@@ -83,6 +86,43 @@ const { verification, quoteText, allProofsValid } = await verifyQuoteProof(publi
 if (allProofsValid && verification.code === RESULT_CODE.VERIFIED) {
     console.log('Verified quote:', quoteText);
 }
+
+// Also check a displayed (possibly segmented) quote against the proven text:
+const { quoteMatches } = await verifyQuoteProof(publicClient, proofData, {
+    quote: 'The revolution ... televised.',
+    mode: 'soft',
+});
+```
+
+---
+
+## `quoteMatchesProvenText`
+
+Checks whether a displayed quote is covered by proven text (the `quoteText` returned by `verifyQuoteProof`). Used internally by `verifyQuoteProof` when `opts.quote` is passed, and can also be called directly.
+
+```js
+const matches = quoteMatchesProvenText(quote, provenText, { mode? });
+```
+
+| Parameter | Type | Description |
+|---|---|---|
+| `quote` | `string` | The quote as displayed. May contain ellipses (`...`, `…`) or bracketed insertions (`[sic]`) when `mode` is `'soft'`. |
+| `provenText` | `string` | The Merkle-proven text, e.g. `quoteText` from `verifyQuoteProof`. |
+| `opts.mode` | `'hard' \| 'soft'` _(optional)_ | `'hard'` (default) requires `quote` to appear verbatim as a contiguous substring of `provenText` — this is the original behavior, with no breaking changes. `'soft'` splits `quote` on ellipsis/bracket gap markers and checks that each literal segment appears in `provenText`, **in the same order**. Text inside brackets is ignored entirely. |
+
+**Returns:** `boolean`
+
+```js
+import { quoteMatchesProvenText } from 'indelible/verify';
+
+quoteMatchesProvenText('The revolution will not be televised.', provenText);
+// true — verbatim substring, works in either mode
+
+quoteMatchesProvenText('The revolution ... televised.', provenText);
+// false in 'hard' mode (default) — not a verbatim substring
+
+quoteMatchesProvenText('The revolution ... televised.', provenText, { mode: 'soft' });
+// true — both segments found in provenText, in order
 ```
 
 ---

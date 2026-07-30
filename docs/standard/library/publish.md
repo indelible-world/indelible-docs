@@ -232,12 +232,38 @@ const { proofJson, onChain } = await proveQuote({
 | Parameter | Type | Description |
 |---|---|---|
 | `articleText` | `string` | The full text of the source article (the document being quoted from). |
-| `quote` | `string` | The exact passage being quoted. Must appear within `articleText`. |
+| `quote` | `string` | The passage being quoted. Normally must appear verbatim within `articleText`. May instead contain gap markers — ellipses (`...`, `…`) or bracketed editorial insertions (`[sic]`) — in which case each literal segment on either side of a gap is located **in order** within `articleText`; see [Segmented Quotes](#segmented-quotes) below. |
 | `authority` | `string` | The Ethereum address that attested the source article. |
 | `publicClient` | `PublicClient` _(optional)_ | When provided, the library looks up the on-chain attestation and includes `chainId` and `attestationIndex` in the proof. |
 | `chainId` | `number` _(optional)_ | Explicit chain ID. Used when `publicClient` is not provided. |
+| `disableSegmenting` | `boolean` _(optional)_ | Defaults to `false`. Set `true` to disable segmented-quote matching entirely — useful when a quote legitimately contains a literal `...` or `[...]` that isn't a gap marker. With this set, a quote that doesn't appear verbatim in `articleText` always throws, even if it contains ellipsis/bracket characters. |
 
 **Returns:** `Promise<{ proofJson: object, onChain: boolean }>`
+
+#### Segmented quotes
+
+If `quote` doesn't appear verbatim in `articleText` and it contains an ellipsis (`...` or `…`) or bracketed text (e.g. `[sic]`, `[…]`), `proveQuote` splits it into literal segments around those markers and locates each segment in `articleText`, in the same order they appear in the quote. Text inside brackets is discarded entirely — it's treated the same as an ellipsis.
+
+```js
+// Both of these produce a valid proof, as long as each segment appears
+// in articleText in that order:
+await proveQuote({ articleText, quote: 'The revolution ... televised.', authority });
+await proveQuote({ articleText, quote: 'The revolution [will not be] televised.', authority });
+```
+
+The resulting `proofJson` has the **exact same shape** as a contiguous quote's proof — it just contains proofs for the chunks covering every segment. Throws if a segment can't be found, or is found out of order relative to the previous segment.
+
+If your quote can legitimately contain a literal ellipsis or brackets (not as an omission marker), pass `disableSegmenting: true` to opt out of this behavior for that call:
+
+```js
+// "..." here is part of the actual quoted text, not an omission marker.
+await proveQuote({
+    articleText,
+    quote: 'She said "wait..." and walked away.',
+    authority,
+    disableSegmenting: true,
+});
+```
 
 | Return field | Type | Description |
 |---|---|---|

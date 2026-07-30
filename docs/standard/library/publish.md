@@ -121,7 +121,7 @@ await setChildIpfsHash({
 | `walletClient` | `WalletClient` | A viem wallet client with a connected account. |
 | `publicClient` | `PublicClient` | A viem public client. |
 | `attestationId` | `number \| bigint` | The on-chain index of the attestation to update. |
-| `childIpfsHash` | `string` | The `bytes32` hex IPFS hash of the new version (use [`decodeCidToIpfsHash`](utils.md#decodecidtoipfshash) to convert from a CID string). |
+| `childIpfsHash` | `string` | The `bytes32` hex IPFS hash of the new version (use [`decodeCidToIpfsHash`](utils.md#decodeCidToIpfsHash) to convert from a CID string). |
 | `account` | `Account` | The authority or delegate account. |
 
 **Returns:** `Promise<{ txHash: string }>`
@@ -139,7 +139,7 @@ const index = await getExistingAttestationIndex({ publicClient, ipfsHash, author
 | Parameter | Type | Description |
 |---|---|---|
 | `publicClient` | `PublicClient` | A viem public client. |
-| `ipfsHash` | `string` | A `bytes32` hex IPFS hash (use [`decodeCidToIpfsHash`](utils.md#decodecidtoipfshash) to convert from a CID string). |
+| `ipfsHash` | `string` | A `bytes32` hex IPFS hash (use [`decodeCidToIpfsHash`](utils.md#decodeCidToIpfsHash) to convert from a CID string). |
 | `authority` | `string` | The Ethereum address of the authority. |
 
 **Returns:** `Promise<bigint>`

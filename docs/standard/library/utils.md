@@ -264,7 +264,7 @@ const cid = getCIDFromRawDigest(digest);
 
 ---
 
-#### `decodeCidToIpfsHash(cidStr)`
+#### `decodeCidToIpfsHash(cidStr)` {id="decodeCidToIpfsHash"}
 
 Extracts the `bytes32` hex value from a CIDv1 string. This is the format the TAANQ contract stores and expects for `ipfsHash`.
 

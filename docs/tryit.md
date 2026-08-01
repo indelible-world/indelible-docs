@@ -23,7 +23,7 @@ See what Indelible would look like in the real world with our demo site and brow
     === "Chrome"
         1. Download the [linked .zip file](https://github.com/indelible-world/indelible-browser-extension/releases/download/latest/indelible-browser-extension-chrome-latest.zip) above
         1. Unzip the folder
-        1. Go to [chrome://extensions/](chrome://extensions/) (copy and paste this link into your browser bar - Chrome doesn't allow linking directly to internal pages)
+        1. Go to [chrome://extensions/](chrome://extensions/) (copy this link and paste it into your browser bar - Chrome doesn't allow linking directly to internal pages)
         1. Enable Developer Mode if it is not already on
         1. Click "Load unpacked"
         1. Select the folder you just unzipped
@@ -31,6 +31,6 @@ See what Indelible would look like in the real world with our demo site and brow
 
     === "Firefox"
         1. Download the [linked .zip file](https://github.com/indelible-world/indelible-browser-extension/releases/download/latest/indelible-browser-extension-firefox-latest.zip) above
-        1. Go to [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox) (copy and paste this link into your browser bar - Firefox doesn't allow linking directly to internal pages)
+        1. Go to [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox) (copy this link and paste it into your browser bar - Firefox doesn't allow linking directly to internal pages)
         1. Click "Load Temporary Add-on"
         1. Select the .zip file you just downloaded

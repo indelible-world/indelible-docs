@@ -11,7 +11,7 @@ With a browser wallet like [MetaMask](https://metamask.io) and some [Sepolia ETH
 
 Then, verify that same text using our verification tool, no browser wallet needed.
 
-[Indelible App for Verifying](https://app.indelible.world/?text=hello world){ .md-button .md-button--primary} [Indelible App for Certifying](https://app.indelible.world/publish){ .md-button}
+[Indelible App for Verifying](https://app.indelible.world/?text=hello world!){ .md-button .md-button--primary} [Indelible App for Certifying](https://app.indelible.world/publish){ .md-button}
 
 ## Indelible Demo Page
 

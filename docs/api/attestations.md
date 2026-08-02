@@ -16,9 +16,9 @@ Certifies a piece of content. Computes its IPFS CID, records a `pending` attesta
 
 ```json
 {
-  "url": "https://example-news.com/articles/some-story",
   "content": "The full plain-text body of the article...",
   "chainId": 11155111,
+  "url": "https://example-news.com/articles/some-story",
   "metadata": { "author": "Jane Doe" }
 }
 ```

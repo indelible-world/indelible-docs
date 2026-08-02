@@ -18,7 +18,7 @@ Keys are prefixed `ind_live_` and are issued per publisher. The raw key is shown
 ## Example Request
 
 ```bash
-curl https://api.indelible.world/v1/attestations \
+curl https://api.publishers.indelible.world/v1/attestations \
   -H "Authorization: Bearer ind_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
   -H "Content-Type: application/json" \
   -d '{

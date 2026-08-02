@@ -73,6 +73,12 @@ nav = [
             "standard/library/chains.md"
         ]}
     ]},
+    {"Certify API" = [
+        {"Overview" = "api/index.md"},
+        "api/authentication.md",
+        "api/attestations.md",
+        "api/errors.md"
+    ]},
     {"Try it Out" = "tryit.md"},
     {"About" = "about.md"},
     {"Guides" = [

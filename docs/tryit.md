@@ -7,7 +7,7 @@ icon: lucide/flask-conical
 
 ## Indelible App
 
-With a browser wallet like [MetaMask](https://metamask.io) and some [Sepolia ETH](https://sepolia-faucet.pk910.de/), go certify some text on our open-source webapp.
+With an [Ethereum-compatible][wallet] [browser wallet](https://ethereum.org/wallets/find-wallet/) like [MetaMask](https://metamask.io) and some [Sepolia ETH](https://sepolia-faucet.pk910.de/), go certify some text on our open-source webapp.
 
 Then, verify that same text using our verification tool, no browser wallet needed.
 
@@ -34,3 +34,6 @@ See what Indelible would look like in the real world with our demo site and brow
         1. Go to [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox) (copy this link and paste it into your browser bar - Firefox doesn't allow linking directly to internal pages)
         1. Click "Load Temporary Add-on"
         1. Select the .zip file you just downloaded
+
+
+[wallet]: https://eips.ethereum.org/EIPS/eip-1193 "We support all EIP-1193-compatible browser wallets."

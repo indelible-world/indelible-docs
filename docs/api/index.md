@@ -1,10 +1,10 @@
 ---
-title: Certify API
+title: Publisher API
 icon: lucide/server
 ---
-# Indelible Certify API
+# Indelible Publisher API
 
-The Indelible Certify API is a hosted HTTP service that lets publishers certify articles with the [Indelible Standard](../standard/index.md) without running any blockchain infrastructure themselves. You send it an API key and some content; it computes the content's IPFS CID, queues the [commit/reveal](../standard/taanq/commit-reveal.md) transactions, and signs them with a platform key to which your organization has [delegated](../standard/taanq/delegations.md).
+The Indelible Publisher API is a hosted HTTP service that lets publishers certify articles with the [Indelible Standard](../standard/index.md) without running any blockchain infrastructure themselves. You send it an API key and some content; it computes the content's IPFS CID, queues the [commit/reveal](../standard/taanq/commit-reveal.md) transactions, and signs them with a platform key to which your organization has [delegated](../standard/taanq/delegations.md).
 
 **This is NOT a blocking API.** A request to create an attestation is validated, written to a `pending` row, and returns `202 Accepted` immediately. A separate worker process signs, submits, and confirms the transactions in the background. Poll for status or wait for confirmation asynchronously.
 

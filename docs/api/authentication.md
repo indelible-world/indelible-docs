@@ -4,7 +4,7 @@ icon: lucide/key-round
 ---
 # Authentication
 
-The Certify API authenticates requests with a bearer API key. Every `/v1/*` route requires one.
+The Publisher API authenticates requests with a bearer API key. Every `/v1/*` route requires one.
 
 ```
 Authorization: Bearer ind_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -18,7 +18,7 @@ Keys are prefixed `ind_live_` and are issued per publisher. The raw key is shown
 ## Example Request
 
 ```bash
-curl https://api.publishers.indelible.world/v1/attestations \
+curl https://publishers-api.indelible.world/v1/attestations \
   -H "Authorization: Bearer ind_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
   -H "Content-Type: application/json" \
   -d '{

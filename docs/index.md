@@ -25,3 +25,7 @@ indelible.world solves this by anchoring authorship to a public blockchain, a le
 | [TAANQ](standard/taanq/index.md) | The smart contract protocol that powers on-chain authorship attestations. |
 | [Getting Started](gettingstarted.md) | How to start using indelible.world. |
 | [Integrations](standard/integrations/ens.md) | Connecting indelible.world with other protocols such as ENS. |
+
+## Getting Started
+
+Contact us at [indelible.world](https://indelible.world/#contact) for more information, or [do it yourself](gettingstarted.md#doing-it-yourself).

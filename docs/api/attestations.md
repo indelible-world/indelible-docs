@@ -81,12 +81,16 @@ Returns the current state of a single attestation. Use this to poll after receiv
   "revealTxHash": "0xabcd...",
   "attestationIndex": 4,
   "error": null,
+  "childAttestationId": null,
+  "childLinkTxHash": null,
   "createdAt": "2026-08-01T19:52:58.304Z",
   "confirmedAt": "2026-08-01T19:54:31.912Z"
 }
 ```
 
 `attestationIndex` is set once `status` is `confirmed`, and together with `contentCid`, `chainId`, and `authorityAddress` forms a complete [attestation reference](../standard/index.md#attestations) that can be independently verified.
+
+`childAttestationId` and `childLinkTxHash` are set after a successful call to [Link a Child Attestation](#link-a-child-attestation).
 
 A request for an attestation belonging to another publisher, or an unrecognized `id`, returns `404`.
 
@@ -115,6 +119,53 @@ Returns attestations for your organization, newest first.
 ```
 
 Each entry has the same shape as [Get an Attestation](#get-an-attestation).
+
+---
+
+## Link a Child Attestation
+
+```
+POST /v1/attestations/:id/child
+```
+
+Signals that a newer version of an attested article exists, by setting the attestation's [`childIpfsHash`](../standard/taanq/attestations.md#updating-the-child-version) on-chain to point at another of your attestations. Use this when you've published an edit or replacement and want verifiers following the old article to be able to discover the new one.
+
+Like [creating an attestation](#create-an-attestation), this call returns immediately and queues the on-chain transaction in the background — poll [`GET /v1/attestations/:id`](#get-an-attestation) to see it land.
+
+### Request Body
+
+```json
+{
+  "childAttestationId": "5c9e2f0a-1c3b-4b8e-8f2a-9e7d3c1a2b44"
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `childAttestationId` | `string (uuid)` | Yes | The `id` of the newer attestation to link to. Must belong to your organization. |
+
+The attestation in the URL (`:id`) — the old one being superseded — must already be `confirmed`.
+
+### Response
+
+`202 Accepted` once the on-chain update has been queued:
+
+```json
+{
+  "id": "b3e1a6b0-6e77-4e37-9f0b-1a1a2f9d9c11",
+  "status": "confirmed",
+  "childAttestationId": "5c9e2f0a-1c3b-4b8e-8f2a-9e7d3c1a2b44",
+  "childLinkTxHash": null,
+  "...": "..."
+}
+```
+
+Once the link transaction is mined, `childLinkTxHash` is populated — poll [`GET /v1/attestations/:id`](#get-an-attestation) to confirm.
+
+!!! note "Overwriting a link"
+    The contract does not restrict `setChildIpfsHash` to a single call — calling this endpoint again with a different `childAttestationId` re-submits the transaction and overwrites the previous link on-chain. Re-posting the *same* `childAttestationId` after it has already landed is a no-op and returns `200`.
+
+A request for an attestation that isn't yet `confirmed`, or for a `childAttestationId` that doesn't exist or belong to your organization, returns an error — see [Errors](errors.md#link-child-attestation-errors).
 
 ---
 

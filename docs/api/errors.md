@@ -49,6 +49,28 @@ A `400` is also returned if `chainId` is omitted and your organization has no de
 
 Every attestation is submitted by a platform key acting as your authority's delegate. This error means your organization hasn't yet completed the on-chain [delegation](../standard/taanq/delegations.md) ceremony for the requested chain, or the delegation was revoked. Contact your Indelible representative to complete onboarding for that chain - see [Before You Start](index.md#before-you-start).
 
+## Link Child Attestation Errors
+
+Returned by [`POST /v1/attestations/:id/child`](attestations.md#link-a-child-attestation):
+
+```json
+{ "error": "attestation not yet confirmed (status pending)" }
+```
+
+`409` — the attestation in the URL hasn't reached `confirmed` status yet. Wait until it has before linking a child.
+
+```json
+{ "error": "childAttestationId not found" }
+```
+
+`404` — the given `childAttestationId` doesn't exist, or doesn't belong to your organization.
+
+```json
+{ "error": "childAttestationId must differ from the attestation id" }
+```
+
+`400` — an attestation cannot be linked to itself.
+
 ## Attestation Failures (`status: "failed"`)
 
 Some failures happen asynchronously, after a `202` has already been returned — the transaction is submitted but reverts on-chain. These surface as `status: "failed"` with a message in `error` when you poll [`GET /v1/attestations/:id`](attestations.md#get-an-attestation), rather than as an HTTP error response. Common causes:

@@ -386,4 +386,4 @@ custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
 
 [project.plugins.offline]
-config.enabled = true
+enabled = true

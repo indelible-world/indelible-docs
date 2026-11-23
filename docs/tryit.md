@@ -9,17 +9,18 @@ icon: lucide/flask-conical
 
 With an [Ethereum-compatible][wallet] [browser wallet](https://ethereum.org/wallets/find-wallet/) like [MetaMask](https://metamask.io) and some [Sepolia ETH](https://sepolia-faucet.pk910.de/), go certify some text on our open-source webapp.
 
-Then, verify that same text using our verification tool, no browser wallet needed.
+Then, verify that same text using our verification tool, no browser wallet needed. You can also try it out using [this journal article.](assets/covidinfodemic.indelible.pdf)
 
 [Indelible App for Verifying](https://app.indelible.world/?text=hello world!){ .md-button .md-button--primary} [Indelible App for Certifying](https://app.indelible.world/publish){ .md-button}
 
 ## Indelible Demo Page
 
-See what Indelible would look like in the real world with our demo site and browser extension:
+See what Indelible looks like in the real world with our demo site and browser extension:
 
-[Demo Site](https://demo.indelible.world/){ .md-button .md-button--primary} [Browser Extension (Chrome)](https://github.com/indelible-world/indelible-browser-extension/releases/download/latest/indelible-browser-extension-chrome-latest.zip){ .md-button}  [Browser Extension (Firefox)](https://github.com/indelible-world/indelible-browser-extension/releases/download/latest/indelible-browser-extension-firefox-latest.zip){ .md-button}
+[Demo Site](https://demo.indelible.world/){ .md-button .md-button--primary} [Browser Extension (Chrome)](https://chromewebstore.google.com/detail/indelible-verifier/ejifedijopaffofkjohhnkebbfgeefcp){ .md-button}  [Browser Extension (Firefox)](https://addons.mozilla.org/en-US/firefox/addon/indelible-verifier/){ .md-button}
 
-???+ info "How to install our browser extension"
+??? info "Install the beta version of our browser extension"
+    Want to get early access to some upcoming verification features? Follow these steps to install our nightly build.
     === "Chrome"
         1. Download the [linked .zip file](https://github.com/indelible-world/indelible-browser-extension/releases/download/latest/indelible-browser-extension-chrome-latest.zip) above
         1. Unzip the folder

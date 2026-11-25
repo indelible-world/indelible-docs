@@ -5,6 +5,10 @@ icon: lucide/flask-conical
 
 # Try It Out
 
+## Indelible Omnibox
+
+Verify and certify text at [https://indelible.world](https://indelible.world) without a wallet.
+
 ## Indelible App
 
 With an [Ethereum-compatible][wallet] [browser wallet](https://ethereum.org/wallets/find-wallet/) like [MetaMask](https://metamask.io) and some [Sepolia ETH](https://sepolia-faucet.pk910.de/), go certify some text on our open-source webapp.
